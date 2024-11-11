@@ -14,11 +14,7 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-image: url('https://images.unsplash.com/photo-1506748686212-bb826f2c6203'); /* 南国の雰囲気の背景画像 */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      filter: brightness(0.8);
+      background-color: #f4f4f4; /* 背景色変更 */
     }
 
     .countdown {
@@ -65,6 +61,16 @@
       border-radius: 10px;
       margin-bottom: 20px;
     }
+
+    /* ヤシの木をASCIIアートで表現 */
+    .palm-tree {
+      font-family: monospace;
+      font-size: 2em;
+      white-space: pre-wrap; /* 改行をそのまま表示 */
+      color: #228B22; /* ヤシの木の色 */
+      text-align: center;
+      margin-top: -50px;
+    }
   </style>
 </head>
 <body>
@@ -73,18 +79,26 @@
     <p id="timer"></p>
   </div>
 
+  <!-- ヤシの木 ASCIIアート -->
+  <div class="palm-tree">
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡴⠛⠉⠛⠻⠆⠒⠒⠶⢄⡀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⡶⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢦⡀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⢀⡼⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢆⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⢀⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢆⠀⠀
+    ⠀⠀⠀⠀⠀⢀⡞⠀⠀⠀⢀⣤⠴⠒⠒⠒⠒⠒⠒⠒⠦⣄⠀⠀⠀⠀⠀⠀⠀⠙⢆
+    ⠀⠀⠀⠀⠀⡼⠀⠀⠀⠀⢸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀⠀⠘
+    ⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠘⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢤⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠘⡇⠀⠀⠀⠀⠀⢸⡄⠀⠀⠀⠀⠀⠀⠀⢠⠇⠈⠳⠦⡀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠱⣄⠀⠀⠀⠀⠸⠿⠇⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⢀⠔⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠘⠲⠶⠆⠤⠄⠛⠓⠚⠂⠤⠴⠒⠛⠂⠤⠴⠋⠁⠀⠀⠀⠀⠀⠀⠀
+  </div>
+
   <div id="message">
     <p class="message" id="message1">今年のプレゼントは素敵な体験</p>
     <p class="message" id="message2">スパで素敵なひとときを</p>
     <p class="message" id="message3">11/24 14:00〜</p>
     <p class="message" id="message4">場所は「SPA THE SAKURA」<br>13:00〜お風呂に入れるみたいなので、先に行ってゆっくりしてみてね（スパ後も入れる）</p>
-  </div>
-
-  <!-- フリー素材の画像に変更 -->
-  <div class="image-container" id="image-container">
-    <img src="https://images.unsplash.com/photo-1604902501282-32bb4bb5c82f" alt="SPA Image 1">
-    <img src="https://images.unsplash.com/photo-1530544183424-801de0a31e98" alt="SPA Image 2">
-    <img src="https://images.unsplash.com/photo-1534351594894-15fa035dc9fc" alt="SPA Image 3">
   </div>
 
   <script>
@@ -130,25 +144,10 @@
           message.classList.add("show");
         }, index * 3000);
       });
-
-      setTimeout(() => {
-        showImages();
-      }, messages.length * 3000);
-    }
-
-    function showImages() {
-      const imageContainer = document.getElementById("image-container");
-      imageContainer.style.display = "block";
-      const images = imageContainer.getElementsByTagName("img");
-
-      Array.from(images).forEach((img, index) => {
-        setTimeout(() => {
-          img.style.display = "block";
-        }, index * 3000);
-      });
     }
 
     const interval = setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
+
