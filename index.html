@@ -14,7 +14,11 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-color: #f4f4f4; /* 背景色変更 */
+      background-image: url('https://example.com/tropical.jpg'); /* 画像URLまたはパス */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: brightness(0.8);
     }
 
     .countdown {
@@ -48,50 +52,12 @@
       opacity: 1;
       transform: translateY(-20px); /* 浮かび上がる効果 */
     }
-
-    .image-container {
-      display: none;
-      width: 100%;
-      text-align: center;
-      margin-top: 20px;
-    }
-    .image-container img {
-      max-width: 80%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    /* ヤシの木をASCIIアートで表現 */
-    .palm-tree {
-      font-family: monospace;
-      font-size: 2em;
-      white-space: pre-wrap; /* 改行をそのまま表示 */
-      color: #228B22; /* ヤシの木の色 */
-      text-align: center;
-      margin-top: -50px;
-    }
   </style>
 </head>
 <body>
   <div class="countdown" id="countdown">
     <h1>あゆみへの<br>素敵なプレゼント</h1>
     <p id="timer"></p>
-  </div>
-
-  <!-- ヤシの木 ASCIIアート -->
-  <div class="palm-tree">
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡴⠛⠉⠛⠻⠆⠒⠒⠶⢄⡀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⡶⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢦⡀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⢀⡼⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢆⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⢀⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢆⠀⠀
-    ⠀⠀⠀⠀⠀⢀⡞⠀⠀⠀⢀⣤⠴⠒⠒⠒⠒⠒⠒⠒⠦⣄⠀⠀⠀⠀⠀⠀⠀⠙⢆
-    ⠀⠀⠀⠀⠀⡼⠀⠀⠀⠀⢸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀⠀⠘
-    ⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠘⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢤⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠘⡇⠀⠀⠀⠀⠀⢸⡄⠀⠀⠀⠀⠀⠀⠀⢠⠇⠈⠳⠦⡀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠱⣄⠀⠀⠀⠀⠸⠿⠇⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⢀⠔⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠘⠲⠶⠆⠤⠄⠛⠓⠚⠂⠤⠴⠒⠛⠂⠤⠴⠋⠁⠀⠀⠀⠀⠀⠀⠀
   </div>
 
   <div id="message">
@@ -102,7 +68,7 @@
   </div>
 
   <script>
-    const targetDate = new Date("2024-11-11T22:10:00").getTime();
+    const targetDate = new Date("2024-11-24T09:00:00").getTime()
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -150,4 +116,3 @@
   </script>
 </body>
 </html>
-
