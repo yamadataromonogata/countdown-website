@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カウントダウンタイマー</title>
   <style>
-    /* 背景画像の設定 */
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -19,15 +18,14 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      filter: brightness(0.8); /* 背景画像を少し暗く */
+      filter: brightness(0.8);
     }
 
-    /* カウントダウンのコンテナ */
     .countdown {
       text-align: center;
       color: #fff;
       font-family: 'Georgia', serif;
-      transition: opacity 1.5s ease-in; /* フェードアウト用 */
+      transition: opacity 1.5s ease-in;
     }
     .countdown h1 {
       font-size: 2.5em;
@@ -39,19 +37,22 @@
       font-size: 1.5em;
     }
 
-    /* カウント終了後のメッセージのアニメーション */
     .message {
       display: none;
-      font-size: 1.5em;
+      font-size: 1.2em; /* 文章を小さく */
+      color: #fff;
       opacity: 0;
-      transition: opacity 2s ease-in;
+      text-align: center;
+      position: relative;
+      top: 0;
+      transition: opacity 2s ease-in, transform 2s ease-in;
     }
     .show {
       display: block;
       opacity: 1;
+      transform: translateY(-20px); /* 浮かび上がる効果 */
     }
 
-    /* 表示用の画像 */
     .image-container {
       display: none;
       width: 100%;
@@ -62,6 +63,7 @@
       max-width: 80%;
       height: auto;
       border-radius: 10px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -71,7 +73,6 @@
     <p id="timer"></p>
   </div>
 
-  <!-- カウントダウン終了後に表示するメッセージ -->
   <div id="message">
     <p class="message" id="message1">今年のプレゼントは素敵な体験</p>
     <p class="message" id="message2">スパで素敵なひとときを</p>
@@ -79,46 +80,41 @@
     <p class="message" id="message4">場所は「SPA THE SAKURA」<br>13:00〜お風呂に入れるみたいなので、先に行ってゆっくりしてみてね（スパ後も入れる）</p>
   </div>
 
-  <!-- 添付の画像を表示するエリア -->
   <div class="image-container" id="image-container">
-    <img src="IMG_2060.webp" alt="SPA Image">
+    <img src="https://www.google.com/maps/uv?pb=!1e10!2sAF1QipMFm4EkSzR-fQTGD_HL3zNLE4pEbK00w8JHva7f" alt="SPA Image 1">
+    <img src="https://www.google.com/maps/uv?pb=!1e10!2sAF1QipO7MlKUqgF6g6HHmWtFR_7E_LcPSyRgLhG2ddf9" alt="SPA Image 2">
+    <img src="https://www.google.com/maps/uv?pb=!1e10!2sAF1QipOZUdBtvkFsyPpDhj-Zfbm8ksBp5YX6uqmGhDYy" alt="SPA Image 3">
   </div>
 
   <script>
-    // カウントダウン終了日時を設定
-    const targetDate = new Date("2024-11-11T22:15:00").getTime();
+    const targetDate = new Date("2024-11-11T22:10:00").getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
-      // 残り時間を計算
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // 表示を更新
       document.getElementById("timer").innerHTML = `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
 
-      // カウントが終了したらメッセージを順に表示
       if (distance < 0) {
         clearInterval(interval);
         fadeOutTitle();
-        setTimeout(displayMessages, 1500); // タイトルが消えた後にメッセージを表示
+        setTimeout(displayMessages, 1500);
       }
     }
 
-    // タイトルをフェードアウトさせる関数
     function fadeOutTitle() {
       const countdownDiv = document.getElementById("countdown");
-      countdownDiv.style.opacity = "0"; // フェードアウト
+      countdownDiv.style.opacity = "0";
       setTimeout(() => {
-        countdownDiv.style.display = "none"; // フェードアウト後非表示
-      }, 1500); // 1.5秒後に非表示
+        countdownDiv.style.display = "none";
+      }, 1500);
     }
 
-    // 順番にメッセージをフェードイン表示する関数
     function displayMessages() {
       const messages = [
         document.getElementById("message1"),
@@ -131,24 +127,28 @@
         setTimeout(() => {
           message.style.display = "block";
           message.classList.add("show");
-        }, index * 3000); // 3秒間隔で次のメッセージを表示
+        }, index * 3000);
       });
 
-      // 最後のメッセージが表示された後に画像を表示
       setTimeout(() => {
-        showImage();
+        showImages();
       }, messages.length * 3000);
     }
 
-    // 画像を表示する関数
-    function showImage() {
+    function showImages() {
       const imageContainer = document.getElementById("image-container");
       imageContainer.style.display = "block";
-      window.scrollTo({ top: imageContainer.offsetTop, behavior: 'smooth' });
+      const images = imageContainer.getElementsByTagName("img");
+
+      Array.from(images).forEach((img, index) => {
+        setTimeout(() => {
+          img.style.display = "block";
+        }, index * 3000);
+      });
     }
 
-    // 毎秒カウントダウンを更新
     const interval = setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
+
